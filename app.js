@@ -19,8 +19,8 @@ app.post('/', (req, res) => {
   let options = req.body
   console.log('User name is:', accountLogin(options))
 
-  if (accountLogin(options) === '') {
-    res.render('index', { err: `Email或密碼有錯誤！` })
+  if (accountLogin(options) === 'err') {
+    res.render('index', { err: `Email或密碼有錯誤！`, options: options })
   } else {
     res.render('user', { userName: accountLogin(options) })
   }
