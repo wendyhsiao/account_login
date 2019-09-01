@@ -1,13 +1,12 @@
 const users = require('./users.json').users
 
 function accountLogin(options) {
-  let userName = 'err'
-
-  users.some(user => {
-    // console.log('user', user)
-    if (options.email === user.email && options.password === user.password)
-      return (userName = user.firstName)
+  let user = users.find(user => {
+    //find()會回傳符合return條件的users值
+    return options.email === user.email && options.password === user.password
   })
+  let userName = user ? user.firstName : 'err'
+
   return userName
 }
 
